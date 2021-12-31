@@ -1,9 +1,5 @@
 const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
-const timestamps = [];
-
-timestamps.unshift(getTimestamp());
-
 function getRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -11,19 +7,12 @@ function getRandomNumber(min, max) {
 }
 
 function getRandomKey() {
-    // console.log(keys[getRandomNumber(0, keys.length-1)])
     return keys[getRandomNumber(0, keys.length-1)]
 }
 
 function targetRandomKey() {
     const key = document.getElementById(getRandomKey());
-    console.log(key)
     key.classList.add("selected");
-    let start = Date.now()
-}
-
-function getTimestamp() {
-    return Math.floor(Date.now() / 1000)
 }
 
 document.addEventListener("keyup", event => {
@@ -37,9 +26,6 @@ document.addEventListener("keyup", event => {
     })
 
     if (keyPressed === highlightedKey.innerHTML) {
-        timestamps.unshift(getTimestamp());
-        const elapsedTime = timestamps[0] - timestamps[1];
-        console.log(`Character per minute ${60/elapsedTime}`)
         highlightedKey.classList.remove("selected");
         targetRandomKey();
     }
